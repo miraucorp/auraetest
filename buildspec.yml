@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - $TF_BIN_DIR/terraform-environment.sh
+      - cd $CODEBUILD_SRC_DIR/src && $TF_BIN_DIR/npm-github-install
+  build:
+    commands:
+      - cd $CODEBUILD_SRC_DIR/src && npm run build
+  post_build:
+    commands:
+      - cp -R $CODEBUILD_SRC_DIR/src/. $CODEBUILD_SRC_DIR/artifacts/
+      - cp -R $CODEBUILD_SRC_DIR/deployment/* $CODEBUILD_SRC_DIR/artifacts/deployment/
+artifacts:
+  files:
+    - '**/*'
+  base-directory: artifacts

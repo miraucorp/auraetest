@@ -1,0 +1,46 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.js"
+      ],
+      "parserOptions": {
+        "ecmaVersion": 2018
+      },
+      "extends": [
+        "eslint:recommended"
+      ]
+    },
+    {
+      "files": [
+        "**/*.ts"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-typescript/base",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "no-console": 0,
+        "import/prefer-default-export": 0,
+        "@typescript-eslint/no-use-before-define": ["error", "nofunc"],
+        "@typescript-eslint/no-throw-literal": 0
+      }
+    }
+  ]
+}
